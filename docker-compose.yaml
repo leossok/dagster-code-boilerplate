@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  dagster_code_boilerplate:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: dagster_code_boilerplate
+    image: dagster_code_boilerplate
+    restart: always
+    expose:
+      - 4000
+    command:
+      - bash
+      - -c
+      - "PYTHONPATH=/user_code/src:$$PYTHONPATH dagster code-server start -h 0.0.0.0 -p 4000 -m data_pipeline"
+    volumes:
+      - ./:/user_code
+    env_file:
+      - .env
+    environment:
+      TZ: Asia/Bangkok
+      # DAGSTER_POSTGRES_USER: ${DAGSTER_POSTGRES_USER}
+      # DAGSTER_POSTGRES_PASSWORD: ${DAGSTER_POSTGRES_PASSWORD}
+      # DAGSTER_POSTGRES_DB: ${DAGSTER_POSTGRES_DB}
+      # S3_BUCKET: ${S3_BUCKET}

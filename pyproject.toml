@@ -1,0 +1,25 @@
+
+[project]
+name = "dagster-code-boilerplate"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "SirawatS", email = "ohsirawat@gmail.com"},
+]
+dependencies = []
+requires-python = ">=3.9"
+readme = "README.md"
+license = {text = "MIT"}
+
+[tool.setuptools]
+py-modules = ["data_pipeline"]
+
+[tool.pdm.scripts]
+dagster-dev = "dagster dev -m data_pipeline"
+
+[tool.dagster]
+module_name = "data_pipeline"
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
